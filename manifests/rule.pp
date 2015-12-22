@@ -52,6 +52,7 @@ define firewall::rule (
         destination   => $destination,
         in_interface  => $interface_in,
         out_interface => $interface_out,
+        port          => $destination_port,
         chain         => $chain,
         protocol      => $protocol,
         target        => upcase($action),
