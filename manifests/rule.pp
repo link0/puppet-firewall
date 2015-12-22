@@ -1,8 +1,10 @@
 
 define firewall::rule (
   $source           = undef,
+  $source_v6        = undef,
   $source_port      = undef,
   $destination      = undef,
+  $destination_v6   = undef,
   $destination_port = undef,
 
   $interface_in     = undef,
@@ -16,7 +18,7 @@ define firewall::rule (
   $chain            = 'INPUT',
 
   $enable           = true,
-
+  $enable_v6        = false,
 ) {
 
   include ::firewall
@@ -48,15 +50,18 @@ define firewall::rule (
     'iptables': {
 
       iptables::rule { $name:
-        source        => $source,
-        destination   => $destination,
-        in_interface  => $interface_in,
-        out_interface => $interface_out,
-        port          => $destination_port,
-        chain         => $chain,
-        protocol      => $protocol,
-        target        => upcase($action),
-        enable        => $enable,
+        source         => $source,
+        source_v6      => $source_v6,
+        destination    => $destination,
+        destination_v6 => $destination_v6,
+        in_interface   => $interface_in,
+        out_interface  => $interface_out,
+        port           => $destination_port,
+        chain          => $chain,
+        protocol       => $protocol,
+        target         => upcase($action),
+        enable         => $enable,
+        enable_v6      => $enable_v6,
       }
     }
     'pf': {
