@@ -36,7 +36,7 @@ class firewall::params {
     }
     'FreeBSD': {
       $firewall_type = 'pf'
-      fail("FreeBSD is not yet implemented")
+      fail('FreeBSD is not yet implemented')
     }
     default: {
       fail("Firewall module is not implemented for OSFamily ${::osfamily}")

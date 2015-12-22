@@ -48,25 +48,21 @@ define firewall::rule (
     'iptables': {
 
       iptables::rule { $name:
-        source => $source,
-        destination => $destination,
-
-        in_interface => $interface_in,
+        source        => $source,
+        destination   => $destination,
+        in_interface  => $interface_in,
         out_interface => $interface_out,
-
-        chain => $chain,
-
-        protocol => $protocol,
-        target => upcase($action),
-
-        enable => $enable,
+        chain         => $chain,
+        protocol      => $protocol,
+        target        => upcase($action),
+        enable        => $enable,
       }
     }
     'pf': {
-      fail("PF is not yet implemented")
+      fail('PF is not yet implemented')
     }
     default: {
-      fail("Unknown firewall::firewall_type")
+      fail('Unknown firewall::firewall_type')
     }
   }
 
